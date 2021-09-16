@@ -15,6 +15,7 @@
 <table class="table table-responsive-sm table-bordered table-striped table-sm">
 <thead>
 <tr>
+<th></th>
 <th>Name</th>
 <th>User Name</th>
 <th>Role</th>
@@ -23,52 +24,19 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Vishnu Serghei</td>
-<td>2012/01/01</td>
-<td>Member</td>
+@foreach($users as $key => $user)
+<tr data-entry-id="{{ $user->id }}">
+<td></td>
+<td>{{ $user->name ?? '' }}</td>
+<td>{{ $user->email ?? '' }}</td>
+<td>{{ $user->role ?? '' }}</td>
 <td><span class="badge badge-success">Active</span></td>
 <td><a class="btn btn-xs btn-primary" href="#">edit</a>
     <a class="btn btn-xs btn-danger" href="#">delete</a>
 </td>
 
 </tr>
-<tr>
-<td>Zbyněk Phoibos</td>
-<td>2012/02/01</td>
-<td>Staff</td>
-<td><span class="badge badge-danger">Banned</span></td>
-<td><a class="btn btn-xs btn-primary" href="#">edit</a>
-    <a class="btn btn-xs btn-danger" href="#">delete</a>
-</td>
-</tr>
-<tr>
-<td>Einar Randall</td>
-<td>2012/02/01</td>
-<td>Admin</td>
-<td><span class="badge badge-secondary">Inactive</span></td>
-<td><a class="btn btn-xs btn-primary" href="#">edit</a>
-    <a class="btn btn-xs btn-danger" href="#">delete</a>
-</td>
-</tr>
-<tr>
-<td>Félix Troels</td>
-<td>2012/03/01</td>
-<td>Member</td>
-<td><span class="badge badge-warning">Pending</span></td>
-<td><a class="btn btn-xs btn-primary" href="#">edit</a>
-    <a class="btn btn-xs btn-danger" href="#">delete</a>
-</td>
-</tr>
-<tr>
-<td>Aulus Agmundr</td>
-<td>2012/01/21</td>
-<td>Staff</td>
-<td><span class="badge badge-success">Active</span></td>
-<td><a class="btn btn-xs btn-primary" href="#">edit</a>
-    <a class="btn btn-xs btn-danger" href="#">delete</a>
-</td>
-</tr>
+@endforeach
 </tbody>
 </table>
 <nav>
