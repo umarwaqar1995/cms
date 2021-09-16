@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header"><b>Create User</b></div>
             <div class="card-body">
-            <form action="{{route('users.update', [$user->id] )}}" method="POST">
+            <form action="{{route('users.update', [$user->id] )}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
             <div class="form-group">
@@ -23,7 +23,7 @@
             <div class="form-group">
             <div class="input-group">
             <div class="input-group-prepend"><span class="input-group-text">Email</span></div>
-            <input class="form-control" id="email" type="email" name="email" autocomplete="email">
+            <input class="form-control" id="email" type="email" name="email" autocomplete="email" value="{{ old('email', isset($user) ? $user->email : '') }}">
             <span class="input-group-text">
                 <i class="cil-envelope-open"></i>
             </span>
@@ -32,7 +32,7 @@
             <div class="form-group">
             <div class="input-group">
             <div class="input-group-prepend"><span class="input-group-text">Password</span></div>
-            <input class="form-control" id="password" type="password" name="password" autocomplete="new-password">
+            <input class="form-control" id="password" type="password" name="password" autocomplete="new-password" value="{{ old('password', isset($user) ? $user->password : '') }}">
             <span class="input-group-text">
                 <i class="cil-lock-locked"></i>
             </span>

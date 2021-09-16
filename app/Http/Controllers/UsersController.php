@@ -34,5 +34,19 @@ class UsersController extends Controller
     
         return view('users.edit', compact('user'));
     }
+    public function update( Request $request,User $user)
+    {
+        $user->name=$request->name;
+        $user->email=$request->email;
+        if($request->password!=null)
+        {
+            $user->password= Hash::make($request->password);
+        }
+        $user->updated_by=Auth::user()->id;
+        $user->save();
+
+            return redirect()->route('users.index');
+        
+    }
 
 }

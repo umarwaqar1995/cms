@@ -31,7 +31,7 @@
 <td>{{ $user->email ?? '' }}</td>
 <td>{{ $user->role ?? '' }}</td>
 <td><span class="badge badge-success">Active</span></td>
-<td><a class="btn btn-xs btn-primary" href="#">edit</a>
+<td><a class="btn btn-xs btn-primary" href="{{route('users.edit', $user->id)}}">edit</a>
     <a class="btn btn-xs btn-danger" href="#">delete</a>
 </td>
 
