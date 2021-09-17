@@ -32,7 +32,11 @@
 <td>{{ $user->role ?? '' }}</td>
 <td><span class="badge badge-success">Active</span></td>
 <td><a class="btn btn-xs btn-primary" href="{{route('users.edit', $user->id)}}">edit</a>
-    <a class="btn btn-xs btn-danger" href="#">delete</a>
+    <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('Are You Sure') }}');" style="display: inline-block;">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="submit" class="btn btn-xs btn-danger" value="delete">
+    </form>
 </td>
 
 </tr>

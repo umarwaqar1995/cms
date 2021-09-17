@@ -25,6 +25,7 @@
                 <div class="card-body p-4">
                     <form method="post" action="{{ url('/password/reset') }}">
                         @csrf
+                        <input type="hidden" name="token" value="{{ $token }}">
                         <h1>Reset Password</h1>
                         <p class="text-muted">Enter email and new password</p>
                         <div class="input-group mb-3">
