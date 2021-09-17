@@ -15,7 +15,7 @@
 <table class="table table-responsive-sm table-bordered table-striped table-sm">
 <thead>
 <tr>
-<th></th>
+<th>#</th>
 <th>Name</th>
 <th>User Name</th>
 <th>Role</th>
@@ -24,9 +24,12 @@
 </tr>
 </thead>
 <tbody>
+ @if(!@empty($users) && $users->count())
+  
 @foreach($users as $key => $user)
 <tr data-entry-id="{{ $user->id }}">
-<td></td>
+    
+<td>{{ ($users->currentPage()-1)*($users->perPage())+ ($key+1)  }}</td>
 <td>{{ $user->name ?? '' }}</td>
 <td>{{ $user->email ?? '' }}</td>
 <td>{{ $user->role ?? '' }}</td>
@@ -41,18 +44,16 @@
 
 </tr>
 @endforeach
+@else
+<tr>
+    <td colspan="10">There are no data.</td>
+</tr>
+@endif 
 </tbody>
 </table>
-<nav>
-<ul class="pagination">
-<li class="page-item"><a class="page-link" href="#">Prev</a></li>
-<li class="page-item active"><a class="page-link" href="#">1</a></li>
-<li class="page-item"><a class="page-link" href="#">2</a></li>
-<li class="page-item"><a class="page-link" href="#">3</a></li>
-<li class="page-item"><a class="page-link" href="#">4</a></li>
-<li class="page-item"><a class="page-link" href="#">Next</a></li>
-</ul>
-</nav>
+
+{{ $users->links() }}
+
 </div>
 </div>
 </div>

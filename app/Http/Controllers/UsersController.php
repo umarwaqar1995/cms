@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);
         return view('users.index', compact('users'));
     }
     public function create()
@@ -25,6 +25,7 @@ class UsersController extends Controller
         $user->name=$request->name;
         $user->email=$request->email;
         $user->password= Hash::make($request->password);
+        $user->role=$request->role;
         $user->updated_by=Auth::user()->id;
         $user->save();
             return redirect()->route('users.index');
