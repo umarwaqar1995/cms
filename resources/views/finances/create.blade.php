@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 @section('content')
 
     
@@ -269,23 +269,11 @@
                     <div class="input-group-prepend"><span class="input-group-text">CSR comments</span></div>
                     <textarea class="form-control"  type="textarea-input" name="csr_comment" rows="5" required> </textarea>
                     
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text">General Comment</span></div>
-                    <textarea class="form-control"  type="textarea-input" name="comment" rows="5" required> </textarea>
-                    
                     </div>
-            </div>
-
-            
+                </div>
            
             </div>
-
-            
-        </div>
+            </div>
     </div>
 </div>
 <div class="card">
@@ -294,4 +282,4 @@
     </div>
 </div>    
 </form>
-@endsection
+@endsection --}}

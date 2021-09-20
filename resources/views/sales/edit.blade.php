@@ -48,7 +48,15 @@
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text">Date/Time</span></div>
-                    <input class="form-control" type="datetime-local" name="time" required value="{{ old('time', isset($sale) ? $sale->time : '') }}">
+                    {{ $datee= old('time', isset($sale) ? $sale->time : '') }}
+                    {{}}
+                    <?php
+$a = $datee= old('time', isset($sale) ? $sale->time : '');
+//var_dump($a);
+$time=  strftime('%Y-%m-%d',strtotime($a));
+//echo $time;
+?>
+                    <input class="form-control" type="datetime-local" name="time" required value=" <?php echo $time;?>" placeholder="{{ old('time', isset($sale) ? $sale->time : '') }}">
                     <span class="input-group-text">
                         <i class="cil-clock"></i>
                     </span>
@@ -179,12 +187,13 @@
             <div class="card-body">
                 <div class="form-group ">
                     <label> <h4>CSP : </h4>
+                       
                 <div class="form-check">
-                    <input class="form-check-input" id="Connectology" value="Connectology" required type="radio" name="csp" value="{{ old('csp', isset($sale) ? $sale->csp : '') }}" >
+                    <input class="form-check-input" id="Connectology" value="Connectology"  required type="radio" name="csp"  {{  $sale->csp == "Connectology" ? 'checked' : 'as' }}>
                     <label class="form-check-label" for="Connectology">Connectology</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" id="Talkine" value="Talkine" required type="radio" name="csp" value="{{ old('csp', isset($sale) ? $sale->csp : '') }}" >
+                    <input class="form-check-input" id="Talkine" value="Talkine" required type="radio" name="csp" {{  $sale->csp == "Talkine" ? 'checked' : 'as' }} >
                     <label class="form-check-label" for="Talkine">Talkine</label>
                   </div>
                 </label>
@@ -192,9 +201,10 @@
                 <div class="form-group row">
                     <div class="input-group-prepend"><span class="input-group-text">Service Provider</span></div>
                      <div class="col-md-10">
+                        
                     <select class="form-control" id="service_provider" name="service_provider" required >
                         @foreach ($services as $service)
-                    <option value="{{ old('service_provider', isset( $service) ? $service['name'] : '') }}">{{ $service['name'] }}</option>
+                    <option value=" {{ $service['name'] }}" {{  $sale->service_provider == $service['name'] ? 'selected' : '' }} >  {{ $service['name'] }}</option>
                     @endforeach
                     </select>
                     </div>
@@ -247,7 +257,9 @@
             <div class="form-group row">
                 <div class="input-group-prepend"><span class="input-group-text">Financial Client</span></div>
                  <div class="col-md-5">
+                     
                 <select class="form-control" id="financial_client" name="financial_client" required>
+                   
                    
                     <option value="Dot Net Promotions">Dot Net Promotions</option>>
                     <option value="Xfinity - St">Xfinity - St</option>>
@@ -260,7 +272,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text">Billing Information</span></div>
-                    <textarea class="form-control"  type="textarea-input" name="billing_info" rows="5" required value="{{ old('billing_info', isset($sale) ? $sale->billing_info : '') }}" > </textarea>
+                    <textarea class="form-control"  type="textarea-input" name="billing_info" rows="5" required > {{  old('billing_info', isset($sale) ? $sale->billing_info : '') }}</textarea>
                     
                     </div>
             </div>
@@ -268,12 +280,23 @@
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text">CSR comments</span></div>
-                    <textarea class="form-control"  type="textarea-input" name="csr_comment" rows="5" required value="{{ old('csr_comment', isset($sale) ? $sale->csr_comment : '') }}" > </textarea>
+                    <textarea class="form-control"  type="textarea-input" name="csr_comment" rows="5" required  > {{ old('csr_comment', isset($sale) ? $sale->csr_comment : '') }} </textarea>
+                    
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend"><span class="input-group-text">General Comment</span></div>
+                    <textarea class="form-control"  type="textarea-input" name="comment" rows="5" required> {{ old('comment', isset($comment) ? $comment->comment : '') }} </textarea>
                     
                     </div>
-                </div>
+            </div>
            
             </div>
+
+
+            
             </div>
     </div>
 </div>
