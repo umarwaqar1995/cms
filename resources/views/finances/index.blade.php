@@ -29,7 +29,7 @@
     <td>{{ $sale->agent_name ?? '' }}</td>
     <td>{{ $sale->service_provider ?? '' }}</td>
     <td><span class="badge badge-success">Active</span></td>
-    <td><a class="btn btn-xs btn-primary" href="{{route('finances.edit', $sale->id)}}">edit</a>
+    <td><a class="btn btn-xs btn-primary" href="{{route('finances.edit', $sale->id)}}">proceed</a>
         {{-- <form action="{{ route('finance.destroy', $finance->id) }}" method="POST" onsubmit="return confirm('{{ trans('Are You Sure') }}');" style="display: inline-block;">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

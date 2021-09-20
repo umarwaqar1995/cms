@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Service;
 use App\Sale;
 use App\Comment;
+use App\CardDetail;
 
 
 class SalesController extends Controller
@@ -57,6 +58,15 @@ class SalesController extends Controller
 
         $comment->save();
 
+        $card=new CardDetail();
+        $card->cc_name = $request->cc_name;
+        $card->cc_number = $request->cc_number;
+        $card->cc_month = $request->cc_month;
+        $card->cc_year = $request->cc_year;
+        $card->cc_cvc = $request->cc_cvc;
+
+        $card->save();
+
 
         return redirect()->route('sales.index');
     }
@@ -101,6 +111,17 @@ class SalesController extends Controller
         $comment->comment = $request->comment;
 
         $comment-> save();
+
+        $card=new CardDetail();
+        $card->cc_name = $request->cc_name;
+        $card->cc_number = $request->cc_number;
+        $card->cc_month = $request->cc_month;
+        $card->cc_year = $request->cc_year;
+        $card->cc_cvc = $request->cc_cvc;
+        $card->sale_id = $sale->id;
+        $card-> agent_id= $request->agent_id;
+
+        $card->save();
 
             return redirect()->route('sales.index');
         
