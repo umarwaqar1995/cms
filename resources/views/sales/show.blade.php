@@ -2,7 +2,7 @@
 @section('content')
 
     
-<form action="{{route('sales.update', [$sale->id] )}}" method="POST" enctype="multipart/form-data">
+<form action="#" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -48,7 +48,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text">Date/Time</span></div>
-                       <input class="form-control" type="datetime-local" id = "clock_time" name="time" required value="<?php echo date('Y-m-d\TH:i', strtotime($sale->time))?>"
+                    <input class="form-control" type="datetime-local" id = "clock_time" name="time" required value="<?php echo date('Y-m-d\TH:i', strtotime($sale->time))?>"
                     >
                     <span class="input-group-text">
                         <i class="cil-clock"></i>
@@ -350,7 +350,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text">General Comment</span></div>
-                    <textarea class="form-control"  type="textarea-input" name="comment" rows="5" required>  </textarea>
+                    {{-- <textarea class="form-control"  type="textarea-input" name="comment" rows="5" required> {{ old('comment', isset($comment) ? $comment->comment : '') }} </textarea> --}}
                     
                     </div>
             </div>

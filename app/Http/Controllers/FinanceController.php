@@ -11,7 +11,7 @@ class FinanceController extends Controller
 {
     public function index(){
 
-        $sales=Sale::all();
+        $sales=Sale::paginate(5);
         return view('finances.index',compact('sales'));
     }
     public function edit($id)

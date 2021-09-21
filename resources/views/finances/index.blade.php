@@ -22,9 +22,14 @@
     </tr>
     </thead>
     <tbody>
+
+    @if(!@empty($sales) && $sales->count())
+
     @foreach($sales as $key => $sale)
     <tr data-entry-id="{{ $sale->id }}">
-    <td></td>
+
+
+    <td>{{ ($sales->currentPage()-1)*($sales->perPage())+ ($key+1)  }}</td>
     <td>{{ $sale->agent_id ?? '' }}</td>
     <td>{{ $sale->agent_name ?? '' }}</td>
     <td>{{ $sale->service_provider ?? '' }}</td>
@@ -39,18 +44,14 @@
     
     </tr>
     @endforeach
+    @else
+    <tr>
+       <td colspan="10">There are no data.</td>
+    </tr>
+    @endif 
     </tbody>
     </table>
-    <nav>
-    <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">4</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    </ul>
-    </nav>
+    {{ $sales->links() }}
     </div>
     </div>
     </div>

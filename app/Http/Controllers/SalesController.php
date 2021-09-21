@@ -13,7 +13,8 @@ class SalesController extends Controller
 {
     public function index(){
 
-        $sales=Sale::all();
+        $sales=Sale::paginate(5);
+        // $users = User::paginate(5);
         return view('sales.index',compact('sales'));
     }
     public function create(){
@@ -55,6 +56,7 @@ class SalesController extends Controller
 
         $comment=new Comment();
         $comment->comment = $request->comment;
+        $comment->sale_id = $sale->id;
 
         $comment->save();
 
@@ -70,11 +72,20 @@ class SalesController extends Controller
 
         return redirect()->route('sales.index');
     }
-    public function edit(Sale $sale)
+    public function edit($id)
     {
+
+        $sale=Sale::where('id',$id)->first();
         $services=Service::all();
         $comment=Comment::all();
-    
+        // $comment=Comment::all();
+        // Comments->sale_id->comment;
+        // $comment=$sale->id;
+
+        // $card=CardDetail::all()->pluck('cc_name','id');
+        
+        // $card=Sale::where('sale_id',$sale_id)->first();
+        // dd($card);
         return view('sales.edit', compact('sale','services','comment'));
     }
     public function update( Request $request,Sale $sale)
@@ -130,6 +141,13 @@ class SalesController extends Controller
     {
         $sale->delete();
         return back();
+    }
+    public function show(Sale $sale)
+    {
+        $services=Service::all();
+        $comment=Comment::all();
+        
+        return view('sales.show', compact('comment','services','sale'));
     }
 
     // public function addJob(){

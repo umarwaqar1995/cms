@@ -52,3 +52,13 @@
         <i class="c-sidebar-nav-icon cil-money"></i>Finance
     </a>
 </li>
+<li>
+    <a class="c-sidebar-nav-link c-active" href="{{ route('processings.index') }}">
+        <i class="c-sidebar-nav-icon cil-layers"></i>Processing
+    </a>
+</li>
+<li>
+    <a class="c-sidebar-nav-link c-active" href="#">
+        <i class="c-sidebar-nav-icon cil-layers"></i>Retention
+    </a>
+</li>

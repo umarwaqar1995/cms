@@ -12,4 +12,8 @@ class Comment extends Model
 
         return $this->belongsTo('App\Sale','sale_id','id');
     }
+    public function SaleComments()
+    {
+        return $this->belongsTo('App\Sale','sale_id','id');
+    }
 }
