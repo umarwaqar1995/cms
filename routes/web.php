@@ -23,10 +23,12 @@ Route::group(['middleware' => ['auth']], function () {
     
 
 Route::get('/home', 'HomeController@index')->name('home');
+// Route::post('sales/proceed', 'SalesController@proceed')->name('sales.proceed');
 
 Route::resource('users', 'UsersController');
 Route::resource('sales', 'SalesController');
 Route::resource('finances', 'FinanceController');
 Route::resource('processings', 'ProcessingController');
+Route::resource('retentions', 'ProcessingController');
 
 });

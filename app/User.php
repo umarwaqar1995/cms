@@ -49,4 +49,9 @@ class User extends Authenticatable
         'deleted_at',
         'email_verified_at',
     ];
+
+    public function Roles()
+    {
+        return $this->belongsTo(Role::class,'role_id','id');
+    }
 }

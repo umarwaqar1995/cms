@@ -40,13 +40,11 @@
             <div class="form-group row">
                 <div class="input-group-prepend"><label for="role" class="input-group-text">Assign Role</label></div>
                  <div class="col-md-10">
-                <select class="form-control" id="role" name="role" required>
-                <option value="">Please select</option>
-                <option value="1">Admin</option>
-                <option value="2">Agent</option>
-                <option value="3">Accountant</option>
-                <option value="4">Processor</option>
-                <option value="5">Customer Retention</option>
+                <select class="form-control" id="role_id" name="role_id" required>
+                    <option>Select Role</option>
+                    @foreach ($roles as $role)
+                    <option value="{{ $role['id'] }}">{{ $role['title'] }}</option>
+                    @endforeach
                 </select>
                 </div>
                 

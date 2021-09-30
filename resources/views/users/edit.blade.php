@@ -32,7 +32,7 @@
             <div class="form-group">
             <div class="input-group">
             <div class="input-group-prepend"><span class="input-group-text">Password</span></div>
-            <input class="form-control" id="password" type="password" name="password" autocomplete="new-password" value="{{ old('password', isset($user) ? $user->password : '') }}">
+            <input class="form-control" id="password" type="password" name="password" autocomplete="new-password" placeholder="Enter New Password">
             <span class="input-group-text">
                 <i class="cil-lock-locked"></i>
             </span>
@@ -41,8 +41,9 @@
             <div class="form-group row">
                 <div class="input-group-prepend"><span class="input-group-text">Assign Role</span></div>
                  <div class="col-md-10">
-                <select class="form-control" id="select1" name="select1">
-                <option value="0">Please select</option>
+                <select class="form-control" id="role" name="role">
+
+                <option value="{{ $user['role'] }}" {{  $user->role == $user['role'] ? 'selected' : '' }}">{{ $user['role'] }}</option>
                 <option value="1">Admin</option>
                 <option value="2">Agent</option>
                 <option value="3">Accountant</option>

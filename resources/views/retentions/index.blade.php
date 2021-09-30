@@ -14,8 +14,8 @@
     <thead>
     <tr>
     <th></th>
-    <th>Sale ID</th>
-    <th>Customer Name</th>
+    <th>Agent ID</th>
+    <th>Agent Name</th>
     <th>Service Provider</th>
     <th>Status</th>
     <th></th>
@@ -30,11 +30,11 @@
 
 
     <td>{{ ($sales->currentPage()-1)*($sales->perPage())+ ($key+1)  }}</td>
-    <td>{{ $sale->id ?? '' }}</td>
-    <td>{{ $sale->first_name  ?? '' }}&nbsp;{{ $sale->last_name  ?? '' }}</td>
+    <td>{{ $sale->agent_id ?? '' }}</td>
+    <td>{{ $sale->agent_name ?? '' }}</td>
     <td>{{ $sale->service_provider ?? '' }}</td>
-    <td><span class="badge badge-success">{{ $sale->status->name ?? '' }}</span></td>
-    <td><a class="btn btn-xs btn-primary" href="{{route('processings.edit', $sale->id)}}">proceed</a>
+    <td><span class="badge badge-success">Active</span></td>
+    <td><a class="btn btn-xs btn-primary" href="{{route('finances.edit', $sale->id)}}">proceed</a>
         {{-- <form action="{{ route('finance.destroy', $finance->id) }}" method="POST" onsubmit="return confirm('{{ trans('Are You Sure') }}');" style="display: inline-block;">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

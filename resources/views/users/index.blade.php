@@ -32,7 +32,10 @@
 <td>{{ ($users->currentPage()-1)*($users->perPage())+ ($key+1)  }}</td>
 <td>{{ $user->name ?? '' }}</td>
 <td>{{ $user->email ?? '' }}</td>
-<td>{{ $user->role ?? '' }}</td>
+<td>{{ $user->Roles->title ?? '' }}</td>
+{{-- <td>@foreach($user->roles as $key => $item)
+    <span class="badge badge-info">{{ $item->title }}</span>
+@endforeach</td> --}}
 <td><span class="badge badge-success">Active</span></td>
 <td><a class="btn btn-xs btn-primary" href="{{route('users.edit', $user->id)}}">edit</a>
     <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('Are You Sure') }}');" style="display: inline-block;">

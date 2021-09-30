@@ -2,22 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\MassDestroyUserRequest;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\User;
 use Illuminate\Http\Request;
+use App\User;
+use App\Role;
+use App\RoleUser;
+
 
 class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(5);
+        $users = User::paginate(10);
+        // dd($users);
         return view('users.index', compact('users'));
     }
     public function create()
     {
-        // $roles = Role::all()->pluck('title', 'id');
-        return view('users.create');
+        $roles = Role::all();
+        
+        return view('users.create',compact('roles'));
     }
     public function store(Request $request)
     {
@@ -25,29 +34,62 @@ class UsersController extends Controller
         $user->name=$request->name;
         $user->email=$request->email;
         $user->password= Hash::make($request->password);
-        $user->role=$request->role;
+        $user->role_id=$request->role_id;
         $user->updated_by=Auth::user()->id;
-        $user->save();
-            return redirect()->route('users.index');
+        if($user->save())
+        {
+            if($request->roles !=null) {
+                foreach ($request->roles as $role) {
+                    $role_user = new RoleUser();
+                    $role_user->user_id = $user->id;
+                    $role_user->role_id = $role;
+                    $role_user->updated_by = Auth::user()->id;
+                    $role_user->save();
+                }
+            }
+        }
+        return redirect()->route('users.index');
     }
     public function edit(User $user)
     {
+        $roles = Role::all();
+        $user =load('roles');
     
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user',roles));
     }
     public function update( Request $request,User $user)
     {
         $user->name=$request->name;
         $user->email=$request->email;
+        $user->role=$request->role;
         if($request->password!=null)
         {
             $user->password= Hash::make($request->password);
         }
         $user->updated_by=Auth::user()->id;
-        $user->save();
+        if($user->save())
+        {
+            RoleUser::where('user_id',$user->id)->delete();
 
-            return redirect()->route('users.index');
+            if($request->roles !=null) {
+                foreach ($request->roles as $role) {
+                    $role_user = new RoleUser();
+                    $role_user->user_id = $user->id;
+                    $role_user->role_id = $role;
+                    $role_user->updated_by = Auth::user()->id;
+                    $role_user->save();
+                }
+            }
+
+        }
+          return redirect()->route('users.index');
         
+    }
+    public function show(User $user)
+    {
+        
+        $user->load('roles');
+        return view('users.show', compact('user'));
     }
     public function destroy(User $user)
     {

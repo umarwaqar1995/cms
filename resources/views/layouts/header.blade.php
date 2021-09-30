@@ -9,7 +9,9 @@
         data-class="c-sidebar-lg-show" responsive="true">
     <i class="c-icon c-icon-lg cil-menu"></i>
 </button>
+
 <ul class="c-header-nav mfs-auto">
+    {{Auth::user()->name}}
 </ul>
 <ul class="c-header-nav">
     <li class="c-header-nav-item dropdown">
