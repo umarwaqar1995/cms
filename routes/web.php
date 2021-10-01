@@ -29,6 +29,6 @@ Route::resource('users', 'UsersController');
 Route::resource('sales', 'SalesController');
 Route::resource('finances', 'FinanceController');
 Route::resource('processings', 'ProcessingController');
-Route::resource('retentions', 'ProcessingController');
+Route::resource('retentions', 'CustomerRetentionController');
 
 });

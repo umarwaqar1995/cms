@@ -16,7 +16,7 @@ class SalesController extends Controller
     public function index(){
 
 
-        $sales=Sale::where('agent_id',Auth::user()->id)->wherein('status_id',[6,2])->
+        $sales=Sale::where('agent_id',Auth::user()->id)->wherein('status_id',[6,2,4])->
                      paginate(10);       
         
         return view('sales.index',compact('sales'));
@@ -69,6 +69,9 @@ class SalesController extends Controller
         $card->agent_id = Auth::user()->id;
 
         $card->save();
+
+        $comment=new Comment();
+        $comment->comment = $request->comment;
 
 
         return redirect()->route('sales.index');
@@ -186,10 +189,11 @@ class SalesController extends Controller
     }
     public function show(Sale $sale)
     {
+        $c_card=CardDetail::where('sale_id',$sale->id)->first();
         $services=Service::all();
         $comment=Comment::all();
         
-        return view('sales.show', compact('comment','services','sale'));
+        return view('sales.show', compact('comment','services','sale','c_card'));
     }
     public function destroy(Sale $sale)
     {

@@ -282,6 +282,7 @@
                                     
         <button style="margin-top: -30px;" class="btn btn-danger" name="decline" value="decline" type="submit">decline</button>
         <button style="margin-top: -30px;" class="btn btn-success" name="proceed" value="proceed" type="submit">proceed to process</button>
+        <button style="margin-top: -30px;" class="btn btn-dark" name="cancelled" value="cancelled" type="submit">Refunded</button>
     </div>    
 </form>
 @endsection

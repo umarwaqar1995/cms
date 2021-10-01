@@ -280,7 +280,7 @@
     <div class="col-lg-12">
         <input class="form-control"  type="text" name="status_id" hidden value="{{ old('status_id', isset($sale) ? $sale->status_id : '') }}">
                                     
-        <button style="margin-top: -30px;" class="btn btn-danger" name="decline" value="decline" type="submit">decline</button>
+        <button style="margin-top: -30px;" class="btn btn-danger" name="request_to_refund" value="request_to_refund" type="submit">Request to Refund</button>
         <button style="margin-top: -30px;" class="btn btn-success" name="proceed" value="proceed" type="submit">Proceed to Retention</button>
     </div>    
 </form>

@@ -14,7 +14,7 @@ class FinanceController extends Controller
 {
     public function index(){
 
-        $sales=Sale::where('status_id','=','1')->orwhere('status_id','=','3')->orwhere('status_id','=','5')->paginate(10);
+        $sales=Sale::where('status_id','=','1')->orwhere('status_id','=','3')->orwhere('status_id','=','9')->paginate(10);
         return view('finances.index',compact('sales'));
     }
     public function edit($id)
@@ -42,6 +42,13 @@ class FinanceController extends Controller
        {
 
            $sale->status_id =3;
+           $sale->save();
+
+       }
+       elseif($request->cancelled=="cancelled")
+       {
+
+           $sale->status_id =4;
            $sale->save();
 
        }

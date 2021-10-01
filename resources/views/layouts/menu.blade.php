@@ -72,7 +72,7 @@ $menu_options=App\Rights::wherein('role_id',$role)->select('role_id','menu_optio
     </a>
 </li>
 <li>
-    <a class="c-sidebar-nav-link c-active" href="#">
+    <a class="c-sidebar-nav-link c-active" href="{{ route('retentions.index') }}">
         <i class="c-sidebar-nav-icon cil-layers"></i>Retention
     </a>
 </li>
@@ -160,7 +160,7 @@ $menu_options=App\Rights::wherein('role_id',$role)->select('role_id','menu_optio
     </a>
 </li>
 <li>
-    <a class="c-sidebar-nav-link c-active" href="#">
+    <a class="c-sidebar-nav-link c-active" href="{{ route('retentions.index') }">
         <i class="c-sidebar-nav-icon cil-layers"></i>Retention
     </a>
 </li>

@@ -38,7 +38,7 @@
         
       
 
-      @if($sale->status_id ==1 OR $sale->status_id ==5)         
+      @if($sale->status_id ==1 OR $sale->status_id ==9)         
       <td><a class="btn btn-xs btn-primary" href="{{route('finances.edit', $sale->id)}}">proceed</a></td>
          
       @else
