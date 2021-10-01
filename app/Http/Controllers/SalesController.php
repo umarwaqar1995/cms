@@ -8,6 +8,9 @@ use App\Sale;
 use App\Comment;
 use App\CardDetail;
 use App\Status;
+use App\User;
+use App\Role;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -72,6 +75,10 @@ class SalesController extends Controller
 
         $comment=new Comment();
         $comment->comment = $request->comment;
+        $comment->sale_id = $sale->id;
+        $comment->user_id = Auth::user()->id;
+
+        $comment->save();
 
 
         return redirect()->route('sales.index');
@@ -84,7 +91,30 @@ class SalesController extends Controller
         $sales=Sale::all();
         $cards=CardDetail::all();
         $c_card=CardDetail::where('sale_id', $id)->first();
-        return view('sales.edit', compact('sale','services','c_card','sales','cards'));
+       
+
+        
+        $comments=Comment::where('sale_id',$id)->get();
+
+        $users=User::all();
+        // dd($users_info);
+
+        $users=User::all();
+        // $user=User::where('id',$comments-user_id)->first();
+    
+        return view('sales.edit', compact('sale','services','c_card','sales','cards','comments'));
+    }
+    public static function get_user_info($id)
+    {       
+        $users=User::where('id',$id)->first();   
+        return $users;         
+    }
+    public static function get_user_role($id)
+    {
+       $role_id= User::where('id',$id)->first();
+       $role_id= $role_id->role_id;
+        $role_title=Role::where('id',$role_id)->first();
+        return $role_title->title;         
     }
     public function update( Request $request,Sale $sale)
     {
@@ -132,6 +162,14 @@ class SalesController extends Controller
             $c_card->sale_id = $sale->id;
             $c_card->agent_id = Auth::user()->id;
             $c_card->save();
+
+            $comment=new Comment();
+        $comment->comment = $request->comment;
+        $comment->sale_id = $sale->id;
+        $comment->user_id = Auth::user()->id;
+
+        $comment->save();
+
         }
         else if($request->proceed == "proceed")
         {
@@ -175,6 +213,14 @@ class SalesController extends Controller
             $c_card->sale_id = $sale->id;
             $c_card->agent_id = Auth::user()->id;
             $c_card->save();
+
+            $comment=new Comment();
+        $comment->comment = $request->comment;
+        $comment->sale_id = $sale->id;
+        $comment->user_id = Auth::user()->id;
+
+        $comment->save();
+        
              
         }
 

@@ -245,7 +245,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend"><span class="input-group-text">CSR comments</span></div>
-                                    <textarea class="form-control"  type="textarea-input" name="csr_comment" rows="5" required> </textarea>   
+                                    <textarea class="form-control"  type="textarea-input" name="comment" rows="5" required> </textarea>   
                             </div>
                         </div>
                     </div>

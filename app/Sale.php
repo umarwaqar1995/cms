@@ -15,12 +15,10 @@ class Sale extends Model
 
     
     
-        public function comments()
+        public function Comments()
         {
-            return $this->hasMany(Comment::class, 'sale_id', 'id');
-        
-    }
-       
+            return $this->hasMany(Comment::class, 'sale_id');
+        }
         public function status()
         {
             return $this->belongsTo(Status::class, 'status_id','id');
@@ -28,5 +26,9 @@ class Sale extends Model
         public function CreditCard()
         {
             return $this->hasMany(CardDetails::class, 'sale_id','id');
+        }
+        public function Users()
+        {
+            return $this->hasMany(User::class);
         }
 }
