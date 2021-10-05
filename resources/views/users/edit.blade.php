@@ -42,13 +42,16 @@
                 <div class="input-group-prepend"><span class="input-group-text">Assign Role</span></div>
                  <div class="col-md-10">
                 <select class="form-control" id="role" name="role">
+                    @foreach ($users as $user)
+                    <option value=" {{ $user['title'] }}"{{  $roles->id == $user['id'] ? 'selected' : '' }}  >  {{ $user['title'] }}</option>
+                    @endforeach
 
-                <option value="{{ $user['role'] }}" {{  $user->role == $user['role'] ? 'selected' : '' }}">{{ $user['role'] }}</option>
-                <option value="1">Admin</option>
+                {{-- <option value="{{ $user['role'] }}" {{  $user->role == $user['role'] ? 'selected' : '' }}">{{ $user['role'] }}</option> --}}
+                {{-- <option value="1">Admin</option>
                 <option value="2">Agent</option>
                 <option value="3">Accountant</option>
                 <option value="4">Processor</option>
-                <option value="5">Customer Retention</option>
+                <option value="5">Customer Retention</option> --}}
                 </select>
                 </div>
                 

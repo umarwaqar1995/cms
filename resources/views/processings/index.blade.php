@@ -33,7 +33,12 @@
     <td>{{ $sale->id ?? '' }}</td>
     <td>{{ $sale->first_name  ?? '' }}&nbsp;{{ $sale->last_name  ?? '' }}</td>
     <td>{{ $sale->service_provider ?? '' }}</td>
+
+    @if($sale->status->name=='Charged')
     <td><span class="badge badge-success">{{ $sale->status->name ?? '' }}</span></td>
+    @elseif($sale->status->name=='Returned')
+    <td><span class="badge badge-dark">{{ $sale->status->name ?? '' }}</span></td>
+    @endif
 
     @if($sale->status_id==3 OR $sale->status_id==10)
     <td><a class="btn btn-xs btn-primary" href="{{route('processings.edit', $sale->id)}}">proceed</a></td> 

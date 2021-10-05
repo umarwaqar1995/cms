@@ -2,7 +2,7 @@
 @section('content')
 
     
-<form action="{{route('retentions.update', [$sale->id] )}}" method="POST" enctype="multipart/form-data">
+<form action="#" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 

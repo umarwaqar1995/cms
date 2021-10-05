@@ -31,7 +31,22 @@
     <td>{{ $sale->id ?? '' }}</td>
     <td>{{ $sale->first_name  ?? '' }}&nbsp;{{ $sale->last_name  ?? '' }}</td>
     <td>{{ $sale->service_provider ?? '' }}</td>
-    <td><span class="badge badge-success">{{ $sale->status->name ?? '' }}</span></td>
+
+    @if($sale->status->name=='Initiate')
+    
+        <td><span class="badge badge-primary">{{ $sale->status->name ?? '' }}</span></td>
+    
+    @elseif($sale->status->name=='Declined')
+    
+        <td><span class="badge badge-warning">{{ $sale->status->name ?? '' }}</span></td>
+    
+    @elseif($sale->status->name=='Cancelled')
+    
+        <td><span class="badge badge-danger">{{ $sale->status->name ?? '' }}</span></td>
+
+    
+    @endif
+
     <td><a class="btn btn-xs btn-primary" href="{{route('sales.edit', $sale->id)}}">edit</a>
         <a class="btn btn-xs btn-info" href="{{route('sales.show', $sale->id)}}">view</a>
         <form action="{{ route('sales.destroy', $sale->id) }}" method="POST" onsubmit="return confirm('{{ trans('Are You Sure') }}');" style="display: inline-block;">
@@ -39,7 +54,6 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="submit" class="btn btn-xs btn-danger" value="delete">
         </form>
-        {{-- <a class="btn btn-xs btn-success" href="{{route('sales/proceed', $sale->id)}}">proceed </a> --}}
     </td>
     
     </tr>

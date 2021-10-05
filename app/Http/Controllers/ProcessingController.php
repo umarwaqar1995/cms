@@ -24,11 +24,12 @@ class ProcessingController extends Controller
         $sale=Sale::where('id',$id)->first();
         $services=Service::all();
         $sales=Sale::all();
-        // $c_comment= Comment::whereIn('sale_id', ['24'])->get();
-
         $c_card=CardDetail::where('sale_id', $id)->first();
+        $comment=Comment::where('sale_id',$sale->id)->first();
+        $comments=Comment::where('sale_id',$id)->get();
 
-        return view('processings.edit', compact('sale','services','c_card','sales'));
+
+        return view('processings.edit', compact('sale','services','c_card','sales','comment','comments'));
     }
     public function update(Request $request,$id)
     {
@@ -40,12 +41,26 @@ class ProcessingController extends Controller
             $sale->status_id =9;
             $sale->save();
 
+            $comment=new Comment();    
+            $comment->comment = $request->comment;
+            $comment->sale_id = $sale->id;
+            $comment->user_id = Auth::user()->id;
+
+            $comment->save();
+
        } 
        elseif($request->proceed=="proceed")
        {
 
            $sale->status_id =8;
            $sale->save();
+
+           $comment=new Comment();    
+           $comment->comment = $request->comment;
+           $comment->sale_id = $sale->id;
+           $comment->user_id = Auth::user()->id;
+
+            $comment->save();
 
        }
     

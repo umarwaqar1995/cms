@@ -289,8 +289,10 @@
     <td>{{ $key+1 ?? '' }}</td>
     <td>{{ $sale->id ?? '' }}</td>
     <td>{{ $comment->comment  ?? '' }}</td>
-    <td> {{App\Http\Controllers\SalesController::get_user_info( $comment->user_id)->name}} </td>
-    <td> {{(App\Http\Controllers\SalesController::get_user_role( $comment->user_id))}} </td>
+    <td>{{ $comment->Users->name  ?? '' }}</td>
+    <td>{{ $comment->Users->Roles->title  ?? '' }}</td>
+    {{-- <td> {{App\Http\Controllers\SalesController::get_user_info( $comment->user_id)->name}} </td> --}}
+    {{-- <td> {{(App\Http\Controllers\SalesController::get_user_role( $comment->user_id))}} </td> --}}
     <td style="white-space: nowrap;"> {{ $comment->updated_at  ?? '' }} </td>
       
     </tr>

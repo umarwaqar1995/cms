@@ -266,8 +266,8 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend"><span class="input-group-text">CSR comments</span></div>
-                                    <textarea class="form-control"  type="textarea-input" name="csr_comment" disabled rows="5">{{ old('csr_comment', isset($sale) ? $sale->csr_comment : '') }} </textarea>
-                                    <input class="form-control"  type="text" name="csr_comment" hidden value="{{ old('csr_comment', isset($sale) ? $sale->csr_comment : '') }}">
+                                    <textarea class="form-control"  type="textarea-input" name="comment" disabled rows="5">{{ old('comment', isset($comment) ? $comment->comment : '') }} </textarea>
+                                    <input class="form-control"  type="text" name="comment" hidden value="{{ old('comment', isset($comment) ? $comment->comment : '') }}">
                                        
                             </div>
                         </div>
@@ -275,12 +275,5 @@
             </div>
         </div>
     </div>
-    {{-- <div class="col-lg-12">
-        <input class="form-control"  type="text" name="status_id" hidden value="{{ old('status_id', isset($sale) ? $sale->status_id : '') }}">
-                                    
-        <button style="margin-top: -30px;" class="btn btn-danger" name="decline" value="decline" type="submit">decline</button>
-        <button style="margin-top: -30px;" class="btn btn-success" name="proceed" value="proceed" type="submit">proceed to process</button>
-        <button style="margin-top: -30px;" class="btn btn-dark" name="cancelled" value="cancelled" type="submit">Refunded</button>
-    </div>     --}}
 </form>
 @endsection

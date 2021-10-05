@@ -29,6 +29,7 @@ class Sale extends Model
         }
         public function Users()
         {
-            return $this->hasMany(User::class);
+            return $this->hasMany(User::class, 'user_id');
         }
+        
 }

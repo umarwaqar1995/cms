@@ -11,7 +11,7 @@
 </button>
 
 <ul class="c-header-nav mfs-auto">
-    {{Auth::user()->name}}
+    {{Auth::user()->name}} | {{Auth::user()->Roles->title}}
 </ul>
 <ul class="c-header-nav">
     <li class="c-header-nav-item dropdown">
@@ -24,6 +24,11 @@
         <div class="dropdown-menu dropdown-menu-right pt-0">
             <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
             <a class="dropdown-item" href="#">
+                
+                <!----------------------LINK FOR USER PROFILE------------------------->
+                {{-- {{ url('')}}/users/{{Auth::user()->id}}/edit --}}
+
+
                 <i class="c-icon mfe-2 cil-user"></i>Profile
             </a>
             <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

@@ -23,10 +23,11 @@ class CustomerRetentionController extends Controller
         $sale=Sale::where('id',$id)->first();
         $services=Service::all();
         $sales=Sale::all();
-
         $c_card=CardDetail::where('sale_id', $id)->first();
+        $comment=Comment::where('sale_id',$sale->id)->first();
+        $comments=Comment::where('sale_id',$id)->get();
 
-        return view('retentions.edit', compact('sale','services','c_card','sales'));
+        return view('retentions.edit', compact('sale','services','c_card','sales','comment','comments'));
     }
     public function update(Request $request,$id)
     {
@@ -38,6 +39,13 @@ class CustomerRetentionController extends Controller
             $sale->status_id =10;
             $sale->save();
 
+            $comment=new Comment();    
+            $comment->comment = $request->comment;
+            $comment->sale_id = $sale->id;
+            $comment->user_id = Auth::user()->id;
+
+            $comment->save();
+
        } 
        elseif($request->completed=="completed")
        {
@@ -45,9 +53,31 @@ class CustomerRetentionController extends Controller
            $sale->status_id =7;
            $sale->save();
 
+           $comment=new Comment();    
+           $comment->comment = $request->comment;
+           $comment->sale_id = $sale->id;
+           $comment->user_id = Auth::user()->id;
+
+           $comment->save();
+
        }
     
             return redirect()->route('retentions.index');
         
+    }
+    public function show(Sale $sale)
+    {
+        dd($sale->id);
+        
+        $sale=Sale::where('id',$id)->first();
+        dd($sale);
+        $c_card=CardDetail::where('sale_id',$id)->first();
+        $services=Service::all();
+        $comment=Comment::where('sale_id',$sale->id)->first();
+        $comments=Comment::where('sale_id',$id)->get();
+        
+       
+        
+        return view('retentions.show', compact('comment','services','sale','c_card','comments'));
     }
 }

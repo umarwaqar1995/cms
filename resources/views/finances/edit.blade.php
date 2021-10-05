@@ -268,9 +268,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend"><span class="input-group-text">CSR comments</span></div>
-                                    <textarea class="form-control"  type="textarea-input" name="csr_comment" disabled rows="5">{{ old('csr_comment', isset($sale) ? $sale->csr_comment : '') }} </textarea>
-                                    <input class="form-control"  type="text" name="csr_comment" hidden value="{{ old('csr_comment', isset($sale) ? $sale->csr_comment : '') }}">
-                                       
+                                    <textarea class="form-control" placeholder="Write a New Comment..." type="textarea-input" name="comment" rows="5"></textarea>   
                             </div>
                         </div>
                     </div>
@@ -285,4 +283,52 @@
         <button style="margin-top: -30px;" class="btn btn-dark" name="cancelled" value="cancelled" type="submit">Refunded</button>
     </div>    
 </form>
+
+
+
+
+<!-------------------------------------------COMMENT SECTION---------------------------------------->
+
+
+<div class="row">
+    <div class="col-lg-12">
+    <div class="card">
+    <div class="card-header"><i class="fa fa-align-justify"></i> All Comments</div>
+    <div class="card-body">
+    <table class="table table-responsive-sm table-bordered table-striped table-sm">
+    <thead>
+    <tr>
+    <th>#</th>
+    <th>Sale ID</th>
+    <th>Comment</th>
+    <th>Comment By</th>
+    <th>Role</th>
+    <th>Time</th>
+    
+    </tr>
+    </thead>
+    <tbody>
+        {{-- {{(App\Http\Controllers\SalesController::get_user_info(24))}}
+    --}}
+    @foreach($comments as $key => $comment)
+    <tr data-entry-id="{{ $comment->id }}">
+        
+    <td>{{ $key+1 ?? '' }}</td>
+    <td>{{ $sale->id ?? '' }}</td>
+    <td>{{ $comment->comment  ?? '' }}</td>
+    <td>{{ $comment->Users->name  ?? '' }}</td>
+    <td>{{ $comment->Users->Roles->title  ?? '' }}</td>
+    {{-- <td> {{App\Http\Controllers\SalesController::get_user_info( $comment->user_id)->name}} </td> --}}
+    {{-- <td> {{(App\Http\Controllers\SalesController::get_user_role( $comment->user_id))}} </td> --}}
+    <td style="white-space: nowrap;"> {{ $comment->updated_at  ?? '' }} </td>
+      
+    </tr>
+    @endforeach
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    
+</div>
 @endsection

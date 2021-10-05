@@ -21,9 +21,11 @@ Route::get('/', function () {
 Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
     
+// Route::group(['middleware' => ['web']], function(){
 
+
+// });
 Route::get('/home', 'HomeController@index')->name('home');
-// Route::post('sales/proceed', 'SalesController@proceed')->name('sales.proceed');
 
 Route::resource('users', 'UsersController');
 Route::resource('sales', 'SalesController');

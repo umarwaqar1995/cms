@@ -36,6 +36,7 @@ class SalesController extends Controller
         $sale->agent_id = Auth::user()->id;
         $sale->agent_name = Auth::user()->name;
         $sale->agent_email = Auth::user()->email;
+        $sale->role_id = Auth::user()->Roles->id;
         $sale->time = $request->time;
 
         $sale->first_name = $request->customer_first_name;
@@ -91,31 +92,26 @@ class SalesController extends Controller
         $sales=Sale::all();
         $cards=CardDetail::all();
         $c_card=CardDetail::where('sale_id', $id)->first();
-       
-
-        
+        $comment=Comment::where('sale_id',$sale->id)->first();
         $comments=Comment::where('sale_id',$id)->get();
 
-        $users=User::all();
-        // dd($users_info);
-
-        $users=User::all();
-        // $user=User::where('id',$comments-user_id)->first();
+      
+       
     
-        return view('sales.edit', compact('sale','services','c_card','sales','cards','comments'));
+        return view('sales.edit', compact('sale','services','c_card','sales','cards','comments','comment'));
     }
-    public static function get_user_info($id)
-    {       
-        $users=User::where('id',$id)->first();   
-        return $users;         
-    }
-    public static function get_user_role($id)
-    {
-       $role_id= User::where('id',$id)->first();
-       $role_id= $role_id->role_id;
-        $role_title=Role::where('id',$role_id)->first();
-        return $role_title->title;         
-    }
+    // public static function get_user_info($id)
+    // {       
+    //     $users=User::where('id',$id)->first();   
+    //     return $users;         
+    // }
+    // public static function get_user_role($id)
+    // {
+    //    $role_id= User::where('id',$id)->first();
+    //    $role_id= $role_id->role_id;
+    //     $role_title=Role::where('id',$role_id)->first();
+    //     return $role_title->title;         
+    // }
     public function update( Request $request,Sale $sale)
     {
 
@@ -163,12 +159,14 @@ class SalesController extends Controller
             $c_card->agent_id = Auth::user()->id;
             $c_card->save();
 
-            $comment=new Comment();
-        $comment->comment = $request->comment;
-        $comment->sale_id = $sale->id;
-        $comment->user_id = Auth::user()->id;
+            // $comment=Comment::where('sale_id',$sale->id)->first();
 
-        $comment->save();
+            $comment=new Comment();    
+            $comment->comment = $request->comment;
+            $comment->sale_id = $sale->id;
+            $comment->user_id = Auth::user()->id;
+
+            $comment->save();
 
         }
         else if($request->proceed == "proceed")
@@ -214,30 +212,33 @@ class SalesController extends Controller
             $c_card->agent_id = Auth::user()->id;
             $c_card->save();
 
-            $comment=new Comment();
-        $comment->comment = $request->comment;
-        $comment->sale_id = $sale->id;
-        $comment->user_id = Auth::user()->id;
+            // $comment=Comment::where('sale_id',$sale->id)->first();
 
-        $comment->save();
-        
+            $comment=new Comment();    
+            $comment->comment = $request->comment;
+            $comment->sale_id = $sale->id;
+            $comment->user_id = Auth::user()->id;
+
+            $comment->save();
+
              
         }
 
         return redirect()->route('sales.index');
         
     }
-    public function proceed(Request $request,Sale $sale)
-    {
-       dd($sale);
+    // public function proceed(Request $request,Sale $sale)
+    // {
+    //    dd($sale);
         
-        return redirect()->route('sales.index');
-    }
+    //     return redirect()->route('sales.index');
+    // }
     public function show(Sale $sale)
     {
         $c_card=CardDetail::where('sale_id',$sale->id)->first();
         $services=Service::all();
-        $comment=Comment::all();
+        $comment=Comment::where('sale_id',$sale->id)->first();
+        // dd($comment);
         
         return view('sales.show', compact('comment','services','sale','c_card'));
     }

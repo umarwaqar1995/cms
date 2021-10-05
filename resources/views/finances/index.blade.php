@@ -33,10 +33,14 @@
     <td>{{ $sale->id ?? '' }}</td>
     <td>{{ $sale->first_name  ?? '' }}&nbsp;{{ $sale->last_name  ?? '' }}</td>
     <td>{{ $sale->service_provider ?? '' }}</td>
+
+    @if($sale->status->name=='Pending')
+    <td><span class="badge badge-info">{{ $sale->status->name ?? '' }}</span></td>
+    @elseif($sale->status->name=='Charged')
     <td><span class="badge badge-success">{{ $sale->status->name ?? '' }}</span></td>
-      
-        
-      
+    @elseif($sale->status->name=='Request to Refund')  
+    <td><span class="badge badge-secondary">{{ $sale->status->name ?? '' }}</span></td>    
+    @endif
 
       @if($sale->status_id ==1 OR $sale->status_id ==9)         
       <td><a class="btn btn-xs btn-primary" href="{{route('finances.edit', $sale->id)}}">proceed</a></td>

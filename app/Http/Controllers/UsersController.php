@@ -52,10 +52,11 @@ class UsersController extends Controller
     }
     public function edit(User $user)
     {
-        $roles = Role::all();
-        $user =load('roles');
+        $user=User::where('id',$user->id)->first();
+        $users = User::where('role_id',$user->id)->get();
+        $roles =Role::all();
     
-        return view('users.edit', compact('user',roles));
+        return view('users.edit', compact('users','user','roles'));
     }
     public function update( Request $request,User $user)
     {

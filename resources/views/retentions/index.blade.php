@@ -33,15 +33,22 @@
     <td>{{ $sale->id ?? '' }}</td>
     <td>{{ $sale->first_name  ?? '' }}&nbsp;{{ $sale->last_name  ?? '' }}</td>
     <td>{{ $sale->service_provider ?? '' }}</td>
-    <td><span class="badge badge-success">{{ $sale->status->name ?? '' }}</span></td>
 
+
+    @if($sale->status->name=='Completed')
+    <td><span class="badge badge-success">{{ $sale->status->name ?? '' }}</span></td>
+    @elseif($sale->status->name=='Processed')
+    <td><span class="badge badge-info">{{ $sale->status->name ?? '' }}</span></td>
+    @endif
+
+
+    {{-- <td><a class="btn btn-xs btn-info" href="{{route('retentions.show', $sale->id)}}">view</a> --}}
     @if($sale->status_id ==7)
     <td></td>  
     @else
     <td><a class="btn btn-xs btn-primary" href="{{route('retentions.edit', $sale->id)}}">proceed</a></td>
     @endif    
 
-     <td></td>
     
     </tr>
     @endforeach
