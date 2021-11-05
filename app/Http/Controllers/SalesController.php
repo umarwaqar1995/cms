@@ -10,7 +10,6 @@ use App\CardDetail;
 use App\Status;
 use App\User;
 use App\Role;
-
 use Illuminate\Support\Facades\Auth;
 
 
@@ -19,8 +18,10 @@ class SalesController extends Controller
     public function index(){
 
 
-        $sales=Sale::where('agent_id',Auth::user()->id)->wherein('status_id',[6,2,4])->
-                     paginate(10);       
+        $sales=Sale::orderBy('created_at','desc')->where('agent_id',Auth::user()->id)
+                   ->wherein('status_id',[6,2,4])
+                   
+                   ->paginate(10);       
         
         return view('sales.index',compact('sales'));
     }

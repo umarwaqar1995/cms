@@ -90,12 +90,17 @@ class UsersController extends Controller
     {
         
         $user->load('roles');
+
         return view('users.show', compact('user'));
     }
     public function destroy(User $user)
     {
         $user->delete();
         return back();
+    }
+    public function c()
+    {
+        echo "<br>Test Controller.";
     }
 
 }

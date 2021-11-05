@@ -58,4 +58,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+    public function Users()
+    {
+        return $this->hasMany(User::class, 'agent_id');
+    }
+
+//---------------For Middleware------------------
+
+    // public function hasAnyRoles($role_id)
+    // {
+    //     return null != $this->roles()->whereIn('title'.$roles)->first();
+    // }
+    // public function hasAnyRole($role_id)
+    // {
+    //     return null != $this->roles()->where('title'.$role_id)->first();
+    // }
 }

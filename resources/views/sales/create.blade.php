@@ -119,14 +119,17 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="ccnumber">Credit Card Number</label>
-                                        <input class="form-control" id="ccnumber" type="text" placeholder="0000 0000 0000 0000" name ="cc_number">
+                                        <input class="form-control" required id="ccnumber" type="number" placeholder="0000 0000 0000 0000" name ="cc_number"
+                                                                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                   type = "number"
+                                                                   maxlength = "16">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-sm-4">
                                 <label for="ccmonth">Month</label>
-                                    <select class="form-control" id="ccmonth" name ="cc_month">
+                                    <select class="form-control" id="ccmonth" name ="cc_month" required>
                                         <option>01</option>
                                         <option>02</option>
                                         <option>03</option>
@@ -143,7 +146,7 @@
                             </div>
                             <div class="form-group col-sm-4">
                                 <label for="ccyear">Year</label>
-                                    <select class="form-control" id="ccyear" name ="cc_year">
+                                    <select class="form-control" id="ccyear" name ="cc_year" required>
                                         <option>2021</option>
                                         <option>2022</option>
                                         <option>2023</option>
@@ -159,7 +162,10 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="cvv">CVV/CVC</label>
-                                        <input class="form-control" id="cvv" type="text" placeholder="123" name ="cc_cvc">
+                                        <input class="form-control" required id="cvv" placeholder="123" type="number" name ="cc_cvc"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        type = "number"
+                                        maxlength = "3">
                                 </div>
                             </div>
                         </div>

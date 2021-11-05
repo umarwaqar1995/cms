@@ -31,5 +31,9 @@ class Sale extends Model
         {
             return $this->hasMany(User::class, 'user_id');
         }
+        public function Agent_id()
+        {
+            return $this->belongsTo(User::class, 'agent_id');
+        }
         
 }
